@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Interns";
+}
+
+<h1>Interns</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<div id="internsJson" class="json-container">
+    <pre><code id="jsonData" class="language-json"></code></pre>
+</div>
+
+@section Scripts {
+    <script>
+        async function fetchInterns() {
+            const response = await fetch('@Url.Action("GetInternsJson", "Intern")');
+            const interns = await response.json();
+
+            // Cập nhật JSON vào thẻ <code>
+            const jsonCode = document.getElementById('jsonData');
+            jsonCode.textContent = JSON.stringify(interns, null, 2);
+
+            // Kích hoạt Prism để tô màu code
+            Prism.highlightElement(jsonCode);
+        }
+
+        fetchInterns();
+    </script>
+
+    <style>
+        .json-container pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+    </style>
+}

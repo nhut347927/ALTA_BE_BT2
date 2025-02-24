@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALTA_BE_BT2", "ALTA_BE_BT2.csproj", "{15CE7855-C796-2F8E-A37D-678E5330B304}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15CE7855-C796-2F8E-A37D-678E5330B304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CE7855-C796-2F8E-A37D-678E5330B304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CE7855-C796-2F8E-A37D-678E5330B304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CE7855-C796-2F8E-A37D-678E5330B304}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC90D51A-A428-4AA5-A664-6A44932E52DC}
+	EndGlobalSection
+EndGlobal

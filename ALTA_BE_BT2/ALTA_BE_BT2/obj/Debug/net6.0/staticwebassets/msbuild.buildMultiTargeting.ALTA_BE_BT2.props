@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ALTA_BE_BT2.props" />
+</Project>
