@@ -1,4 +1,3 @@
-// filepath: /d:/0_PROJECT MANAGER/ALTA/WEEK6/ALTA_BE_BT2/ALTA_BE_BT2/ALTA_BE_BT2/Controllers/LoginController.cs
 using ALTA_BE_BT2.Models;
 using ALTA_BE_BT2.Services;
 using Microsoft.AspNetCore.Mvc;

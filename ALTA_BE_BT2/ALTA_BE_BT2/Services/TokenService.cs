@@ -1,4 +1,3 @@
-// filepath: /d:/0_PROJECT MANAGER/ALTA/WEEK6/ALTA_BE_BT2/ALTA_BE_BT2/ALTA_BE_BT2/Services/TokenService.cs
 using ALTA_BE_BT2.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
