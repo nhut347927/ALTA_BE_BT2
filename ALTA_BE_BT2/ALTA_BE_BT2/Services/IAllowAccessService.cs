@@ -9,6 +9,6 @@ namespace ALTA_BE_BT2.Services
         Task AddAllowAccessAsync(AllowAccess allowAccess);
         Task UpdateAllowAccessAsync(AllowAccess allowAccess);
         Task DeleteAllowAccessAsync(int id);
-        Task<List<string>> GetAllowedColumnsForUserAsync(int userId);
+        Task<List<string>> GetAllowedColumnsForUserAsync(int userId, String TableName);
     }
 }

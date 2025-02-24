@@ -2,6 +2,7 @@ using ALTA_BE_BT2.Data;
 using ALTA_BE_BT2.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Threading.Tasks;
 
 namespace ALTA_BE_BT2.Services
@@ -23,27 +24,33 @@ namespace ALTA_BE_BT2.Services
             return await _context.Interns.ToListAsync();
         }
 
-        public async Task<IEnumerable<object>> GetInternsForUserAsync(int userId)
+    public async Task<IEnumerable<object>> GetInternsForUserAsync(int userId)
+{
+    var allowedColumns = await _allowAccessService.GetAllowedColumnsForUserAsync(userId, "Intern");
+    var interns = await _context.Interns.ToListAsync();
+
+    // 📌 Lấy danh sách cột thực tế của bảng Intern
+    var entityType = typeof(Intern);
+    var allColumns = entityType.GetProperties().Select(p => p.Name).ToHashSet(); // ⚡ Tạo HashSet để tìm kiếm nhanh hơn
+
+    // 🔥 Lọc danh sách cột hợp lệ
+    var validColumns = allowedColumns.Where(col => allColumns.Contains(col)).ToList();
+
+    var result = interns.Select(intern =>
+    {
+        var expando = new ExpandoObject() as IDictionary<string, object>;
+        foreach (var column in validColumns) // Chỉ lặp qua các cột hợp lệ
         {
-            var allowedColumns = await _allowAccessService.GetAllowedColumnsForUserAsync(userId);
-            var interns = await _context.Interns.ToListAsync();
-
-            var result = interns.Select(intern =>
-            {
-                var expando = new System.Dynamic.ExpandoObject() as IDictionary<string, object>;
-                foreach (var column in allowedColumns)
-                {
-                    var propertyInfo = typeof(Intern).GetProperty(column);
-                    if (propertyInfo != null)
-                    {
-                        expando[column] = propertyInfo.GetValue(intern);
-                    }
-                }
-                return expando;
-            });
-
-            return result;
+            var propertyInfo = entityType.GetProperty(column);
+            expando[column] = propertyInfo?.GetValue(intern);
         }
+        return expando;
+    });
+
+    return result;
+}
+
+
 
         public async Task AddInternAsync(Intern intern)
         {

@@ -44,7 +44,7 @@ namespace ALTA_BE_BT2.Services
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task<List<string>> GetAllowedColumnsForUserAsync(int userId)
+        public async Task<List<string>> GetAllowedColumnsForUserAsync(int userId, string tableName)
         {
             var user = await _context.Users
                 .Include(u => u.Role)
@@ -53,24 +53,15 @@ namespace ALTA_BE_BT2.Services
             if (user == null) return new List<string>();
 
             var allowAccesses = await _context.AllowAccesses
-                .Where(aa => aa.RoleId == user.RoleId && aa.TableName == "Intern")
-                .ToListAsync(); // Lấy tất cả các quyền
+                .Where(aa => aa.RoleId == user.RoleId && aa.TableName == tableName)
+                .ToListAsync();
 
-            // Duyệt qua từng quyền và lấy danh sách cột
-            var allowedColumns = new HashSet<string>();
-            foreach (var allowAccess in allowAccesses)
-            {
-                if (!string.IsNullOrEmpty(allowAccess.AccessProperties))
-                {
-                    foreach (var column in allowAccess.AccessProperties.Split(','))
-                    {
-                        allowedColumns.Add(column.Trim()); // Loại bỏ khoảng trắng dư thừa
-                    }
-                }
-            }
-
-            return allowedColumns.ToList(); 
+            // 🔥 Lọc danh sách cột hợp lệ từ AllowAccesses
+            return allowAccesses
+                .SelectMany(aa => aa.AccessProperties?.Split(',') ?? Array.Empty<string>()) // Tránh null reference
+                .Select(column => column.Trim())
+                .Distinct() // Tránh trùng lặp
+                .ToList();
         }
-
     }
 }
