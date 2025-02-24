@@ -32,7 +32,6 @@ namespace ALTA_BE_BT2.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
-
             await _userService.AddUserAsync(user);
             return RedirectToAction(nameof(Index));
         }
@@ -66,11 +65,10 @@ namespace ALTA_BE_BT2.Controllers
             return View(user);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int UserId)
         {
-            await _userService.DeleteUserAsync(id);
+            await _userService.DeleteUserAsync(UserId);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -33,7 +33,6 @@ namespace ALTA_BE_BT2.Controllers
 
         public async Task<IActionResult> Create(AllowAccess allowAccess)
         {
-
             await _allowAccessService.AddAllowAccessAsync(allowAccess);
             return RedirectToAction(nameof(Index));
         }
@@ -66,11 +65,10 @@ namespace ALTA_BE_BT2.Controllers
             return View(allowAccess);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int AllowAccessId)
         {
-            await _allowAccessService.DeleteAllowAccessAsync(id);
+            await _allowAccessService.DeleteAllowAccessAsync(AllowAccessId);
             return RedirectToAction(nameof(Index));
         }
     }

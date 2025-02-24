@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ALTA_BE_BT2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c692215e6ce318ccbdc3ee08421328af0ffa1b81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6a69ccd979892ecc76c392408d67d07fd9d2c17")]
 [assembly: System.Reflection.AssemblyProductAttribute("ALTA_BE_BT2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ALTA_BE_BT2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

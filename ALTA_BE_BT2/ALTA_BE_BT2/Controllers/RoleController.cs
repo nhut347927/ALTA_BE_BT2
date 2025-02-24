@@ -27,15 +27,10 @@ namespace ALTA_BE_BT2.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Role role)
         {
-            if (ModelState.IsValid)
-            {
-                await _roleService.AddRoleAsync(role);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(role);
+            await _roleService.AddRoleAsync(role);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -49,15 +44,10 @@ namespace ALTA_BE_BT2.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Role role)
         {
-            if (ModelState.IsValid)
-            {
-                await _roleService.UpdateRoleAsync(role);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(role);
+            await _roleService.UpdateRoleAsync(role);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -70,11 +60,10 @@ namespace ALTA_BE_BT2.Controllers
             return View(role);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int RoleId)
         {
-            await _roleService.DeleteRoleAsync(id);
+            await _roleService.DeleteRoleAsync(RoleId);
             return RedirectToAction(nameof(Index));
         }
     }
